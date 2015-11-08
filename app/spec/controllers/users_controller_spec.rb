@@ -32,7 +32,21 @@ RSpec.describe "User Aggregation Root", type: :request do
       expect(json['name']).to eq("NewJames")
     end
 
+    it "get user by id" do
+      get "/users"
+      expect(response).to have_http_status(200)
 
+      json = JSON.parse(response.body)
+      userId = json[0]["id"]
+      get "/users/#{userId}"
+
+      expect(response).to have_http_status(200)
+
+      json = JSON.parse(response.body)
+      # puts json
+      expect(json['name']).to eq("James")
+      expect(json["uri"]).to eq("/users/#{userId}")
+    end
 
   end
 
