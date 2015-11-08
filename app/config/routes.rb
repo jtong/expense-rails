@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   post '/users' => "users#create"
   
   get '/users/:userId' => "users#get"
-  
+  get '/users/:userId/expense-requests' => "expense_requests#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

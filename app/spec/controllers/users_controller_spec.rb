@@ -47,7 +47,8 @@ RSpec.describe "User Aggregation Root", type: :request do
       expect(json['name']).to eq("James")
       expect(json["uri"]).to eq("/users/#{userId}")
     end
-
+    
+    
   end
 
 end

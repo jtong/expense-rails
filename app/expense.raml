@@ -22,7 +22,7 @@
               id: number
               name: string
   /{user-id}
-    get: #~10
+    get: #~10| 13:17 还是请求太简单，请求要复杂了，就不好办了
       response:
         200:
           body:
@@ -31,7 +31,7 @@
                 uri: string
                 id: string
     /expense-requests
-      get: #~15
+      get: #~15|
         response:
           200:
             body:
