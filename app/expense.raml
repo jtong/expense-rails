@@ -30,8 +30,9 @@
               type: object
                 uri: string
                 id: string
+                name: string
     /expense-requests
-      get: #~15|
+      get: #~15|44:43 级联不熟
         response:
           200:
             body:
@@ -46,7 +47,7 @@
                     name: string
                   amount: number
                   requestDate: date
-      post: #~15
+      post: #~15|19:44 requester 其他属性没显示
         body:
           application/x-www-form-urlencoded:
             formParams:
@@ -61,8 +62,9 @@
                     uri: string
                     name: string
                   amount: number
+                  name: string
       /{expense-request-id}
-        get: #~10
+        get: #~10|14:25 很多细节数据没有取
           response:
             200:
               body:
@@ -79,7 +81,7 @@
                     status: string
                     dateRequested: date
                     dateApproved: date
-        put: #~10
+        put: #~10|
           body:
             application/x-www-form-urlencoded:
               formParams:

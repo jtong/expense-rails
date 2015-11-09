@@ -6,17 +6,33 @@ class ExpenseRequestsController < ApplicationController
       jsonize(request, params)
       
     end
-
     render json: result, status: 200
+  end
+  
+  def create
+    user = User.find(params[:userId])
+    @expenseRequest = ExpenseRequest.create(requestDate: Time.now, requester: user.id, name: params[:name])
+    render json: jsonize(@expenseRequest.as_json, params), status: 201
+  end
+  
+  def get
+    @expenseRequest = ExpenseRequest.find(params[:expenseRequestId])
+    render json: jsonize(@expenseRequest.as_json, params), status: 200
+
   end
   
   def jsonize(item, params)
     item["uri"] = "/users/#{params[:userId]}/expense-requests/#{item["_id"]}"
     item[:id] = item["_id"].to_s
+    # puts item
     if(item["requester"])
-      item["requester"] = item["requester"].as_json
-      item["requester"]['uri']= "/users/#{params[:userId]}"
+      parse_next_leve item, "requester", "/users"
+      if(!item["approver"].nil?)
+        parse_next_leve item, "approver", "/users"
+      end
     end
+    item
   end
 
+  
 end
