@@ -9,4 +9,5 @@ class ExpenseRequest
   field :status, type: String, default: "REQUEST"
   has_one :user, as: :requester
   has_one :user, as: :approver
+  has_many :expenseItems, class_name: "ExpenseItem"
 end

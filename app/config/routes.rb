@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/users/:userId/expense-requests' => "expense_requests#index"
   post '/users/:userId/expense-requests' => "expense_requests#create"
 
+  get '/users/:userId/expense-requests/:expenseRequestId/expense-items' => "expense_items#index"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

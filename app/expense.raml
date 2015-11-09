@@ -81,7 +81,7 @@
                     status: string
                     dateRequested: date
                     dateApproved: date
-        put: #~10|
+        put: #~10| 32:51因为忘记了级联对象只能设置id，结果浪费了半小时，38:06 204不熟，结果浪费了一些时间
           body:
             application/x-www-form-urlencoded:
               formParams:
@@ -105,7 +105,7 @@
                     dateRequested: date
                     dateApproved: date
         /expense-items
-          get: #~15
+          get: #~15|38:44: 准备好before：16:07，发现controller应该改成request: 3:00 级联&处理各种错误: 7:44
             response:
               200:
                 body:
@@ -113,6 +113,7 @@
                     type: object[]
                       uri: string
                       amount: number
+                      consumeDate: date
                       category: object
                         uri: string
                         name: string
