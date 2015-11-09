@@ -105,7 +105,7 @@
                     dateRequested: date
                     dateApproved: date
         /expense-items
-          get: #~15|38:44: 准备好before：16:07，发现controller应该改成request: 3:00 级联&处理各种错误: 7:44
+          get: #~15|38:44: 准备好before,it class：16:07，发现controller应该改成request: 3:00 级联&处理各种错误: 7:44
             response:
               200:
                 body:
@@ -117,9 +117,9 @@
                       category: object
                         uri: string
                         name: string
-                        comment: string
+                      comment: string
 
-          post: #~15
+          post: #~15|22:36 写测试和实现 12:22, 做到一半做晕了，脑子犯晕，意识不到该找哪些数据：8:00， 剩下时间修bug，发觉find的时候()写成了[]
             body:
               application/x-www-form-urlencoded:
                 formParams:
