@@ -21,6 +21,15 @@ class ExpenseRequestsController < ApplicationController
 
   end
   
+  def update
+    @expenseRequest = ExpenseRequest.find(params[:expenseRequestId])
+    updateAttributes = Hash.new
+    updateAttributes[:approver] = User.find(params[:approverId]).id unless params[:approverId].nil?
+    updateAttributes[:status] = params[:status] unless params[:status].nil? 
+    @expenseRequest.update updateAttributes
+    render json: jsonize(@expenseRequest.as_json, params), status: 200
+  end
+  
   def jsonize(item, params)
     item["uri"] = "/users/#{params[:userId]}/expense-requests/#{item["_id"]}"
     item[:id] = item["_id"].to_s

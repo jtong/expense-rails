@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def parse_document_id(document)
-    document.as_json["id"].to_s
+    document.id.to_s
   end
   
   def parse_json_id(json)

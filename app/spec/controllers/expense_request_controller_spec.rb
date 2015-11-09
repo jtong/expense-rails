@@ -13,6 +13,8 @@ RSpec.describe ExpenseRequestsController, type: :request do
         requester: @user_create.id, name: "test",
         approver: @approver.id,
         status: "APPROVED")
+    
+    
   end
 
   it "should find all request" do
@@ -26,7 +28,7 @@ RSpec.describe ExpenseRequestsController, type: :request do
     expect(json[0]['uri']).to eq("/users/#{@user_create.as_json["_id"]}/expense-requests/#{@expenseRequest.as_json["_id"]}")
   end
 
-  it "should create a new request" do
+  it "should create a new request" do # TODO: 时间没有测
     post "/users/#{@user_create.as_json["_id"]}/expense-requests", {
           name: "expense 1"
                                                                      
@@ -51,6 +53,25 @@ RSpec.describe ExpenseRequestsController, type: :request do
     expect(json["approver"]["uri"]).to eq("/users/#{@approver.as_json["_id"]}")
     expect(json['requester']['uri']).to eq("/users/#{@user_create.as_json["_id"]}")
     expect(json['uri']).to eq("/users/#{@user_create.as_json["_id"]}/expense-requests/#{@expenseRequest.as_json["_id"]}")
+  end
+
+  
+  it "should update request by id" do
+    uri = "/users/#{@user_create.as_json["_id"]}/expense-requests/#{@expenseRequest.as_json["_id"]}"
+    put uri, {
+               name: "UPDATED",
+               approverId: @user_create._id.to_s,
+               status: "REJECT"
+           }
+    expect(response).to have_http_status(200)
+
+    puts response.body
+    json = JSON.parse(response.body)
+    expect(json["requestDate"]).to eq(@requestDate.strftime("%Y-%m-%d"))
+    expect(json["amount"]).to eq(0.0)
+    expect(json["approver"]["uri"]).to eq("/users/#{@user_create.as_json["_id"]}")
+    expect(json['requester']['uri']).to eq("/users/#{@user_create.as_json["_id"]}")
+
   end
 
 

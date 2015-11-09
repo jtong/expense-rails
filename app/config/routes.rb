@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/users' => "users#create"
 
   get '/users/:userId/expense-requests/:expenseRequestId' => "expense_requests#get"
+  put '/users/:userId/expense-requests/:expenseRequestId' => "expense_requests#update"
   get '/users/:userId/expense-requests' => "expense_requests#index"
   post '/users/:userId/expense-requests' => "expense_requests#create"
 

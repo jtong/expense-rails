@@ -64,7 +64,7 @@
                   amount: number
                   name: string
       /{expense-request-id}
-        get: #~10|14:25 很多细节数据没有取
+        get: #~10|9:17 很多细节数据没有取 54:42: 细节数据也处理完毕，不一致的行为造成了很多的浪费，忘记怎么从bson中取id浪费了很多时间，抽取从bson和document中获取id的方法花了一些时间
           response:
             200:
               body:
